@@ -1,0 +1,5 @@
+#!/bin/bash
+
+cp /home/finlayson/public_html/template.html $1
+
+

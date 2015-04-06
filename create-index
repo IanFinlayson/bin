@@ -1,0 +1,75 @@
+#!/bin/bash
+
+# check if there is an index.html
+if [ -e index.html ]
+then
+    # check if it was auto-generated
+    if grep -Fq "automatically created index page" index.html
+    then
+        # the old one was auto-made, remove it!
+        rm index.html
+    else
+        # the old one was made by hand, do nothing!
+        echo "Error, existing index was made by hand!"
+        exit 0
+    fi
+fi
+
+# make the name the base of the directory
+name=$(basename $PWD)
+
+# spit biolerplate into index.html
+cat << EOF >> index.html
+<html>
+<!-- automatically created index page -->
+<head>
+<title>${name^}</title>
+<link rel="stylesheet" type="text/css" href="/~finlayson/style.css" />
+</head>
+<body>
+<table width="100%"><tr>
+<td><h1>${name^}</h1></td><td align="right"><a href="http://www.umw.edu"><img src="/~finlayson/images/logo.png" /></a></td>
+</tr></table>
+<style type="text/css" media="screen">
+td {
+  padding-left: 15px;
+  padding-right: 15px;
+  padding-top: 0px;
+  padding-bottom: 0px;
+}
+</style>
+<table>
+<tr><td><b>Name</b></td><td><b>Last Modified</b></td><td><b>Size</b></td></tr>
+<tr><td><a href=".."><img src="/~finlayson/images/folder.png" />Up</a></td><td>&nbsp;</td><td>&nbsp;</td></tr>
+EOF
+
+# for each file in the directory
+files=$(ls | grep -v index.html)
+
+for f in $files
+do
+  # make a row for it
+  echo "<tr>" >> index.html
+  # if it's a directory
+  if [ -d $f ]
+  then
+    # put in a folder image
+    echo "<td><a href=\"$f\"><img src=\"/~finlayson/images/folder.png\" /></a>" >> index.html
+  else
+    # put in a file image
+    echo "<td><a href=\"$f\"><img src=\"/~finlayson/images/file.png\" /></a>" >> index.html
+  fi 
+  # dump the name, then modify time, then size
+  echo "<a href=\"$f\">$f</a></td>" >> index.html
+  echo "<td>$(stat --printf=%y $f | cut -d. -f1)</td>" >> index.html
+  echo "<td>$(du -Ssh $f | cut -f1)</td>" >> index.html
+  echo "</tr>" >> index.html
+done
+
+# insert closing junk
+cat << EOF >> index.html
+</table>
+</body>
+</html>
+EOF
+

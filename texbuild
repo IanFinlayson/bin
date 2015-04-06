@@ -1,0 +1,34 @@
+#!/bin/bash
+
+if [ $# -ne 1 ]
+then
+  echo "Usage: `basename $0` file.tex"
+  exit -1
+fi
+
+base=`basename $1 .tex`
+
+# run pdflatex on the source twice
+pdflatex --interaction=batchmode $base
+pdflatex --interaction=batchmode $base
+pdflatex --interaction=batchmode $base
+
+# if there is a bib file, run bibtex, and pdflatex twice more
+if [ -e $base.bib ]
+then
+  bibtex $base
+  pdflatex --interaction=batchmode $base
+  pdflatex --interaction=batchmode $base
+  pdflatex --interaction=batchmode $base
+fi
+
+
+rm -f $base.aux
+rm -f $base.log
+rm -f $base.out
+rm -f $base.blg
+rm -f $base.bbl
+rm -f $base.ps
+rm -f $base.toc
+rm -f $base.dvi
+

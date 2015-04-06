@@ -1,0 +1,7 @@
+#!/bin/bash
+
+fname=backup-`date +%Y-%m-%d`.tar.bz2
+stuff=`ls ~`
+cd ~ && tar --exclude-vcs -cjvf $fname $stuff
+echo "Remember to copy the backup file somewhere!"
+
