@@ -1,0 +1,24 @@
+#!/usr/bin/python2
+# -*- coding: latin-1 -*-
+
+import commands
+import re
+
+data = commands.getstatusoutput('weather KEZF')[1].split('\n')
+
+temp = ''
+for line in data:
+  if 'Temperature:' in line:
+    temp = line 
+result = re.match('[^:]*: ([^\.\s]*).*', temp)
+temp = result.group(1) + '°'
+
+sky = ''
+for line in data:
+  if 'Sky conditions:' in line:
+    sky = line
+result = re.match('[^:]*: ([^\.]*).*', sky)
+sky = 'Sky is ' + result.group(1)
+
+print(temp + ' ' + sky)
+

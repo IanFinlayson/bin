@@ -1,0 +1,5 @@
+#!/bin/bash
+
+# filter double-quotes out of title as they mess up i3bar
+xdotool getactivewindow getwindowname | sed 's/\"//g' | sed 's/\\//g'
+
