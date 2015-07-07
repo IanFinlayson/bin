@@ -22,7 +22,7 @@ then
   pdflatex --interaction=batchmode $base
 fi
 
-
+# delete all of the crap files that get produced
 rm -f $base.aux
 rm -f $base.log
 rm -f $base.out
@@ -31,4 +31,8 @@ rm -f $base.bbl
 rm -f $base.ps
 rm -f $base.toc
 rm -f $base.dvi
+rm -f $base.nav
+rm -f $base.snm
+rm -f $base.vrb
+
 
