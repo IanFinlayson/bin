@@ -1,4 +1,5 @@
 #!/bin/sh
 
+# copy text in a file to the X clipboard
 cat $1 | xsel --clipboard --input
 
