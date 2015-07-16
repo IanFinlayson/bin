@@ -23,8 +23,7 @@ class Address:
         end = line[idx:].find("\"")
         return line[idx:][7:end]
     # no link found...
-    return "UNKNOWN"
-
+    return "UNKNOWN" 
 
 def lookup(first, last):
   a = Address( )

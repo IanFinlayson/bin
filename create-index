@@ -10,8 +10,8 @@ then
         rm index.html
     else
         # the old one was made by hand, do nothing!
-        echo "Error, existing index was made by hand!"
-        exit 0
+        echo "Error, existing index appears to be made by hand!"
+        exit 1
     fi
 fi
 
