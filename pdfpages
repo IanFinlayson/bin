@@ -1,0 +1,9 @@
+#!/bin/bash
+
+for f in "$@"
+do
+    echo -n "$f pages: "
+    pdfinfo "$f" | grep '^Pages' | awk '{print $2;}'
+done
+
+
