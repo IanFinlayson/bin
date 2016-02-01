@@ -20,11 +20,14 @@ name=$(basename $PWD)
 
 # spit biolerplate into index.html
 cat << EOF >> index.html
+<!DOCTYPE html>
 <html>
 <!-- automatically created index page -->
 <head>
+<meta charset="UTF-8">
 <title>${name^}</title>
 <link rel="stylesheet" type="text/css" href="/~finlayson/style.css" />
+<link rel="icon" type="image/png" href="/~finlayson/favicon.png" /> 
 </head>
 <body>
 <table width="100%"><tr>
