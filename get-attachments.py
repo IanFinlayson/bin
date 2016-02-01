@@ -65,7 +65,7 @@ def month_number(m):
   if m == 'Jun': return 5
   if m == 'July': return 6
   if m == 'Aug': return 7
-  if m == 'Sept': return 8
+  if m == 'Sep': return 8
   if m == 'Oct': return 9
   if m == 'Nov': return 10
   if m == 'Dec': return 11

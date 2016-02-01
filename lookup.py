@@ -30,7 +30,7 @@ def lookup(first, last):
   a = Address( )
   c = pycurl.Curl( )
   # build an URL that searches the directory for the student in question
-  url = "http://www.umw.edu/directory/?adeq=%s+%s&ad_group%%5B%%5D=&search-choice=people" % (first, last)
+  url = "students.umw.edu/directory/?adeq=%s+%s" % (first, last)
   c.setopt(c.URL, url)
   c.setopt(c.WRITEFUNCTION, a.callback)
   # download the page
@@ -46,4 +46,5 @@ for line in fileinput.input( ):
   print("%s %s %s" % (first, last, email))
   # wait for some time (I don't know if IT wants me hammering their server like this
   time.sleep(1)
+
 
