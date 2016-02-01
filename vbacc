@@ -13,6 +13,6 @@ fi
 base=$(basename $1 .c)
 
 # compile and pack the file into a GBA game
-$KITHOME/bin/arm-agb-elf-gcc -O3 -nostartfiles $KITHOME/arm-agb-elf/lib/crt0.o  -o $base.elf $base.c -lm
+$KITHOME/bin/arm-agb-elf-gcc -O3 -std=c99 -nostartfiles $KITHOME/arm-agb-elf/lib/crt0.o  -o $base.elf $base.c -lm
 $KITHOME/bin/arm-agb-elf-objcopy -O binary $base.elf $base.gba 
 
