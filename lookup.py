@@ -39,9 +39,14 @@ def lookup(first, last):
   # strip out the address
   return a.get( )
 
-# for all lines in input (either file argument or stdin if none)
-for line in fileinput.input( ):
-  first, last = tuple(line.split( ))
+# print a friendly greeting
+print("Enter a student name:")
+while True:
+  try:
+    first, last = tuple(input('> ').split( ))
+  except:
+    print('\n')
+    break
   email = lookup(first, last)
   print("%s %s %s" % (first, last, email))
   # wait for some time (I don't know if IT wants me hammering their server like this
