@@ -1,6 +1,6 @@
 #!/bin/bash
 
-KITHOME="/home/finlayson/gba/devkitadv"
+KITHOME="/home/finlayson/sources/devkitadv"
 
 # ensure that at least one input file was passed
 if [ $# -lt 1 ] 
