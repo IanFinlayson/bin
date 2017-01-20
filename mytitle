@@ -1,5 +1,17 @@
 #!/bin/bash
 
+# the length limit of the title
+LIMIT=100
+
 # filter double-quotes out of title as they mess up i3bar
-xdotool getactivewindow getwindowname | sed 's/\"//g' | sed 's/\\//g'
+title=$(xdotool getactivewindow getwindowname | sed 's/\"//g' | sed 's/\\//g')
+
+# if it's too long, truncate it
+if [ ${#title} -gt $LIMIT ]
+then
+    title=${title:0:$LIMIT}
+    title=$title"..."
+fi
+
+echo $title
 

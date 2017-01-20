@@ -1,0 +1,30 @@
+#!/bin/bash
+
+# function to print a file based on type - add more some day?
+printone () {
+    case "$1" in
+        *.pdf )
+            lpr -o sides=two-sided-long-edge "$1"
+            ;;
+
+        *.doc | *.docx )
+            rm -f /tmp/*.pdf
+            soffice --convert-to pdf:writer_pdf_Export "$1" --headless --outdir /tmp/ >/dev/null
+            lpr -o sides=two-sided-long-edge /tmp/*.pdf
+            rm -f /tmp/*.pdf
+            ;;
+
+        *)
+            echo "I dunno how to print $1"
+            ;;
+    esac
+}
+
+# loop through all files given as arguments
+for f in "$@"
+do
+    printone "${f}"
+done
+
+
+
