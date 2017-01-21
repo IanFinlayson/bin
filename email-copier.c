@@ -7,8 +7,6 @@
 
 int main(int argc, char** argv) {
     FILE* f = fopen("/home/finlayson/emails.txt", "w");
-    if (!f) {return 23;}
-
     for (int i = 1; i < argc; i++) {
         fprintf(f, "%s\n", argv[i]);
     }
